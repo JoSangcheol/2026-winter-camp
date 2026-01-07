@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase";
+import DefaultInput from "../components/DefaultInput";
 export default function LoginPage() {
   // 1) state 4개
   const [email, setEmail] = useState(""); // input과 연결될 값
@@ -62,7 +63,7 @@ export default function LoginPage() {
         </p>
 
         <form className='space-y-3' onSubmit={handleSubmit}>
-          <input
+          <DefaultInput
             type='email'
             placeholder='이메일'
             className='w-full px-3 py-2 border rounded'
@@ -70,7 +71,7 @@ export default function LoginPage() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <input
+          <DefaultInput
             type='password'
             placeholder='비밀번호'
             className='w-full px-3 py-2 border rounded'
@@ -82,14 +83,21 @@ export default function LoginPage() {
           {/* error가 있을 때만 출력 */}
           {error && <p className='text-sm text-red-500'>{error}</p>}
 
-          <button type='submit' className='w-full py-2 rounded border bg-blue-600 text-white hover:bg-blue-800 hover:cursor-pointer'>
+          <button
+            type='submit'
+            className='font-bold w-full h-12 py-2 rounded-xl bg-black text-white hover:bg-gray-800 hover:cursor-pointer'
+          >
             {submitText}
           </button>
         </form>
 
         <div className='mt-4 text-center text-sm'>
           {switchQuestion}
-          <button type='button' className='ml-2 underline hover:cursor-pointer' onClick={toggleMode}>
+          <button
+            type='button'
+            className='ml-2 underline hover:cursor-pointer'
+            onClick={toggleMode}
+          >
             {switchButtonText}
           </button>
         </div>
